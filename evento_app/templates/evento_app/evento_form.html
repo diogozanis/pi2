@@ -1,0 +1,55 @@
+{% extends "web_project/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+Evento
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+<form method="POST">
+  <div class="class card mt-3" style="width: 40rem;">
+    <div class="card-header">
+      <h6 class="card-text text-center">Evento</h6>
+    </div>
+    <div class="card-body">
+      {% csrf_token %}
+      {% crispy form %}
+    </div>
+<div class="text-center mb-2">
+  <input class="mt-4"  style="width: 4rem;" type="submit" value="Gravar" />
+</div>
+  </div>
+</form>
+<script>
+  $(document).ready(function() {
+      // Seleciona todos os campos de data renderizados pelo Crispy Forms
+      $('#id_data_evento').datepicker({
+          dateFormat: 'dd/mm/yy', // Formato de data brasileiro
+          changeMonth: true,
+          changeYear: true,
+          showButtonPanel: true,
+          regional: 'pt-BR', // Define o idioma do datepicker para português
+          onSelect: function(dateText, inst) {
+              $(this).val(dateText); // Quando o usuário seleciona uma data no datepicker
+          }
+      });
+
+      // Habilita a digitação manual no campo de data
+      // Seleciona todos os campos de data renderizados pelo Crispy Forms
+      var dateInputs = document.querySelectorAll('#id_data_evento');
+      
+      // Adiciona um evento de input a cada campo de data
+      dateInputs.forEach(function(input) {
+          input.addEventListener('input', function() {
+              var value = this.value;
+              // Verifica se o valor tem 2 ou 5 caracteres e adiciona a barra quando necessário
+              if (value.length === 2 || value.length === 5) {
+                  this.value += '/';
+              }
+          });
+      });
+  });
+</script>
+</div>
+
+{% endblock %}
