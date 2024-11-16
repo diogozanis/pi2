@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load crispy_forms_tags %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+   
+</head>
+
+<body>
+    <!-- <div role="main" class="container-fluid"> -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            
+            <div class="collapse navbar-collapse">
+            <!-- <div class="container"> -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <b><a href="{% url 'dashboard' %}" class="nav-link text-light">Dashboard</a></b>
+                    </li>
+                    <li class="nav-item">
+                        <b><a href="{% url 'sol_list' %}" class="nav-link text-light">Solicitação</a></b>
+                    </li>
+                    <li class="nav-item">
+                        <b><a href="{% url 'evento_lista' %}" class="nav-link text-light">Eventos</a></b>
+                    </li>
+                    <li class="nav-item">
+                        <b><a href="{% url 'lista_historico' %}" class="nav-link text-light">Consultas</a></b>
+                    </li>
+                    <li class="nav-item">
+                        <b><a href="{% url 'cadastros_lista' %}" class="nav-link text-light">Cadastros</a></b>
+                    </li>
+                    <li class="nav-item">
+                        <b><a href="{% url 'acesso_negado' %}" class="nav-link text-light">Auditoria</a></b>
+                    </li>
+                    <li class="nav-item">
+                        <b><a href="{% url 'logout' %}" class="nav-link text-light">Sair</a></b>
+                    </li>
+                </ul>
+            </div>
+
+            
+                
+                
+                
+                
+                
+                
+            <!-- </div> -->
+        </nav>
+
+
+ 
+        
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    <!-- </div> -->
+   
+</body>
+
+</html>
