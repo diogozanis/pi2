@@ -21,7 +21,7 @@ import dj_database_url, psycopg2
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__name__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -35,7 +35,7 @@ else:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = os.environ.get('DEBUG', 'True') == 'False'
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 if DEBUG:
     STATICFILES_DIRS = [
@@ -118,15 +118,15 @@ WSGI_APPLICATION = 'web_project.wsgi.application'
 
 SUPABASE_DB_URL = config('SUPABASE_DB_URL')
 DJANGO_ENV = os.environ.get('DJANGO_ENV')
-#if SUPABASE_DB_URL:
+if SUPABASE_DB_URL:
     # Use the Supabase database configuration
-#    DATABASES = {
-#        "default": dj_database_url.config(
-#            default=SUPABASE_DB_URL, conn_max_age=600
-#        )
-#    }
-#else:
-DATABASES = {
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=SUPABASE_DB_URL, conn_max_age=600
+        )
+    }
+else:
+    DATABASES = {
             'default':
             {
                 'ENGINE': 'django.db.backends.postgresql',
@@ -134,7 +134,7 @@ DATABASES = {
                 'USER': config('POSTGRES_USER'),
                 'PASSWORD': config('POSTGRES_PASSWORD'),
                 'HOST': config('POSTGRES_HOST'),
-                'PORT': '5432',
+                'PORT': 5432,
             }
         }
 # Password validation
