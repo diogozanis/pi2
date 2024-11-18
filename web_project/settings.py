@@ -35,7 +35,7 @@ else:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = os.environ.get('DEBUG', 'True') == 'False'
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 if DEBUG:
     STATICFILES_DIRS = [
